@@ -1,17 +1,44 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+//import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Chat from './components/Chat/Chat';
-import Join from './components/Join/Join.js'
+import Join from './components/Join/Join.js';
+import Rooms from './components/Rooms/Rooms'
+
+import React, { useState } from "react";
+//import ClientComponent from "./ClientComponent";
 
 function App() {
+    const [loadClient, setLoadClient] = useState(true);
     return (
-        <div className="App" >
-            <Router>
-                <Route path="/" exact component={Join} ></Route>
-                <Route path="/chat" component={Chat} ></Route>
-            </Router>
-        </div>
-    )
+        <>
+            {/* LOAD OR UNLOAD THE CLIENT */}
+            <button onClick={() => setLoadClient(prevState => !prevState)}>
+                STOP CLIENT
+      </button>
+            {/* SOCKET IO CLIENT*/}
+            {loadClient ? <Chat /> : null}
+        </>
+    );
 }
 
-export default App
+export default App;
+
+
+
+// function App() {
+//     return (
+//         <Router>
+//             <div className="App" >
+//                 < Rooms />
+//                 <Switch>
+//                     <Router>
+//                         <Route path="/" exact component={Join} ></Route>
+//                         <Route path="/chat" component={Chat} ></Route>
+//                     </Router>
+//                 </Switch>
+//             </div>
+//         </Router>
+//     )
+// }
+
+// export default App
