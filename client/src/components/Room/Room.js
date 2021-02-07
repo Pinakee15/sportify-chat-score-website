@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import styles from "./Room.module.css";
 import { Link } from "react-router-dom";
 
-function Room({ roomName }) {
-    const [bgColor, setBgColor] = useState('white');
-    const [status, setStatus] = useState(false);
-    const changeColor = () => {
-        setBgColor('blue');
-        setStatus((prevStat) => {
-            return !prevStat;
-        });
-    }
+function Room({ index, roomName, selectOneRoom, status }) {
+    //const [status, setStatus] = useState(false);
+    // const changeColor = () => {
+    //     setBgColor('blue');
+    //     setStatus((prevStat) => {
+    //         return !prevStat;
+    //     });
+    // }
+    const changeColor = selectOneRoom;
     return (
-        <div style={status ? { backgroundColor: bgColor } : null} className={styles.Room} onClick={changeColor}>
+        <div style={status ? { backgroundColor: "blue" } : null} className={styles.Room} onClick={() => changeColor(index, !status)}>
             <p>This is the room {roomName}</p>
         </div>
     )
