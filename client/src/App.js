@@ -2,22 +2,21 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Chat from './components/Chat/Chat';
 import Join from './components/Join/Join.js';
-import Rooms from './components/Rooms/Rooms'
 
 import React, { useState } from "react";
 //import ClientComponent from "./ClientComponent";
 
 function App() {
-    const [loadClient, setLoadClient] = useState(true);
+    //const [loadClient, setLoadClient] = useState(true);
     return (
-        <>
-            {/* LOAD OR UNLOAD THE CLIENT */}
-            <button onClick={() => setLoadClient(prevState => !prevState)}>
-                STOP CLIENT
-      </button>
-            {/* SOCKET IO CLIENT*/}
-            {loadClient ? <Chat /> : null}
-        </>
+        <Router>
+            <div className="App" >
+                <Switch>
+                    <Route path="/" exact component={Join} ></Route>
+                    <Route path="/chat" component={Chat} ></Route>
+                </Switch>
+            </div>
+        </Router>
     );
 }
 
@@ -38,6 +37,16 @@ export default App;
 //                 </Switch>
 //             </div>
 //         </Router>
+
+<>
+    {/* LOAD OR UNLOAD THE CLIENT
+            <button onClick={() => setLoadClient(prevState => !prevState)}>
+                STOP CLIENT
+            </button>
+            {/* SOCKET IO CLIENT*/}
+    {/* {loadClient ? <Chat /> : null} */}
+</>
+
 //     )
 // }
 

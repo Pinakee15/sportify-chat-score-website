@@ -1,25 +1,67 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import socketIOClient from "socket.io-client";
-const ENDPOINT =  "localhost:5000" //"http://127.0.0.1:5000";
+const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 
 export default function Chat() {
-  const [response, setResponse] = useState("");
+  //var message = useRef("This is the Null messag");
+  const [message, setMessage] = useState("hey");
 
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT);
-    socket.on("FromAPI", data => {
-      setResponse(data);
-    });
+    console.log("Entered for the first time")
+    socket.on('first', (data) => {
+      console.log(`Message from the server ${data}`)
+      setMessage(data);
+    }, [])
+
     return () => socket.disconnect();
 
-  }, []);
-
+  }, [message]);
   return (
-    <p>
-      It's <time dateTime={response}>{response}</time>
-    </p>
+    <div>
+      <p>You entered the chat room  : {message}</p>
+      <input type="text" placeholder="Enter your message here..." />
+    </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // import React, { useState, useEffect } from 'react';

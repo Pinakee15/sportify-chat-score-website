@@ -15,15 +15,13 @@ app.get("/", (req, res) => {
 })
 
 io.on("connection", (socket) => {
-    console.log("New client connected");
-    if (interval) {
-        clearInterval(interval);
-    }
-    interval = setInterval(() => getApiAndEmit(socket), 1000);
-    socket.on("disconnect", () => {
-        console.log("Client disconnected...");
-        clearInterval(interval);
-    });
+
+    console.log(`A new client with socket id ${socket} is added ..`);
+    socket.emit('first', "Hey new client ssup here");
+    socket.on('disconnect', () => {
+        console.log("The user disconnected..")
+    })
+
 });
 
 const getApiAndEmit = socket => {
