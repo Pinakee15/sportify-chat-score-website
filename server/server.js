@@ -17,48 +17,23 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
 
     console.log(`A new client with socket id ${socket} is added ..`);
-    socket.emit('first', "Hey new client ssup here");
-    socket.on('disconnect', () => {
-        console.log("The user disconnected..")
+
+    socket.on("join", (userName, room) => {
+        console.log(`The user ${userName} registered to the room ${room}`);
+        socket.join(room);
+        socket.to(room).emit('welcome', `${userName} has joined the room.`);
+    });
+
+    socket.on('send message', (message, room, callback) => {
+        console.log(`Event fired and the values are ${message} and ${room}`)
+        io.to(room).emit('message', message); //to(room).
+        callback();
     })
 
+    socket.on('disconnect', () => {
+        console.log("The user disconnected..")
+    });
 });
-
-const getApiAndEmit = socket => {
-    const response = new Date();
-    // Emitting a new message. Will be consumed by the client
-    socket.emit("FromAPI", response);
-};
 
 http.listen(port, () => console.log(`Listening on port ${port}`));
 
-
-// const express = require('express');
-// const app = express();
-// const http = require('http').createServer(app);
-
-// const io = require('socket.io')(http, {
-//     cors: {
-//         origin: '*',
-//     }
-// });
-
-// PORT = 5000;
-
-// app.get("/", (req, res) => {
-//     res.send("This is the home page")
-// })
-
-// io.on('connection', (socket) => {
-//     console.log("Connection established successfully");
-//     socket.on('disconnect', () => {
-//         console.log("The user has left")
-//     });
-//     socket.on("New event", (data) => {
-//         console.log(data);
-//     })
-// })
-
-// http.listen(PORT, () => {
-//     console.log(`The server is listening on port ${PORT}`);
-// })

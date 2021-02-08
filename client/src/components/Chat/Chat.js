@@ -1,26 +1,53 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 
-export default function Chat() {
-  //var message = useRef("This is the Null messag");
-  const [message, setMessage] = useState("hey");
+let socket;
+export default function Chat(props) {
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([])
 
   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    console.log("Entered for the first time")
-    socket.on('first', (data) => {
-      console.log(`Message from the server ${data}`)
-      setMessage(data);
-    }, [])
+
+    socket = socketIOClient(ENDPOINT);
+    console.log("Entered for the first time");
+
+    socket.on('welcome', (mssg) => {
+      setMessages([...messages, mssg]);
+    });
+
+    socket.emit("join", props.location.userName, props.location.selectedRoom);
+
+    socket.on('message', (mssg) => {
+      console.log(`Hurray.... ${messages} and ${mssg}`)
+      setMessages([...messages, mssg]);
+      console.log(`Now,,,, ${messages} and ${mssg}`)
+    });
 
     return () => socket.disconnect();
 
-  }, [message]);
+  }, []);
+
+  const allMessages = messages.map(message => <p>{message}</p>);
+  console.log(`Checking .... ${allMessages} and ${messages}`);
+  const sendMessage = (e) => {
+    e.preventDefault();
+    console.log(`Button clicked with value ${e.target}`);
+    socket.emit('send message', message, props.location.selectedRoom, () => {
+      setMessages([...messages, message])
+      setMessage("");
+    });
+  }
+
   return (
     <div>
-      <p>You entered the chat room  : {message}</p>
-      <input type="text" placeholder="Enter your message here..." />
+      <p>Welcome {props.location.userName} to the {props.location.selectedRoom}</p>
+      { allMessages}
+      <input type="text" placeholder="Enter your message here..."
+        value={message} onChange={(e) => setMessage(e.target.value)}
+        onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
+      />
+      <button onClick={(e) => sendMessage(e)}>Send</button>
     </div>
   );
 }
