@@ -12,16 +12,17 @@ export default function Chat(props) {
     socket = socketIOClient(ENDPOINT);
     console.log("Entered for the first time");
 
-    socket.on('welcome', (mssg) => {
-      setMessages([...messages, mssg]);
+    socket.on('welcome', (mssg, admin) => {
+      setMessages(prevMessages => [...prevMessages, { userName: 'admin', mssg }])
     });
 
     socket.emit("join", props.location.userName, props.location.selectedRoom);
 
-    socket.on('message', (mssg) => {
+    socket.on('message', (mssg, userName) => {
       console.log(`Hurray.... ${messages} and ${mssg}`);
       //setMessages([...messages, mssg]);
-      setMessages(prevMessages => [...prevMessages, mssg])
+      //setMessages(prevMessages => [...prevMessages, mssg])
+      setMessages(prevMessages => [...prevMessages, { userName, mssg }])
       console.log(`Now,,,, ${messages} and ${mssg}`);
     });
 
@@ -29,13 +30,13 @@ export default function Chat(props) {
 
   }, []);
 
-  const allMessages = messages.map(message => <p>{message}</p>);
+  const allMessages = messages.map(message => <p>{message.userName} : {message.mssg}</p>);
   console.log(`Checking .... ${allMessages} and ${messages}`);
+
   const sendMessage = (e) => {
     e.preventDefault();
     console.log(`Button clicked with value ${e.target}`);
     socket.emit('send message', message, props.location.selectedRoom, () => {
-      //setMessages([...messages, message])
       setMessage("");
     });
   }

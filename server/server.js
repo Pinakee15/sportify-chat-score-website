@@ -2,6 +2,7 @@ const express = require("express");
 const port = process.env.PORT || 5000;
 const app = express();
 const http = require("http").createServer(app);
+const { addUser, findUser, showUser } = require('./User.js')
 
 const io = require('socket.io')(http, {
     cors: {
@@ -22,11 +23,15 @@ io.on("connection", (socket) => {
         console.log(`The user ${userName} registered to the room ${room}`);
         socket.join(room);
         socket.to(room).emit('welcome', `${userName} has joined the room.`);
+        addUser(socket.id, userName, room);
+        console.log(showUser());
     });
 
     socket.on('send message', (message, room, callback) => {
-        console.log(`Event fired and the values are ${message} and ${room}`)
-        io.to(room).emit('message', message); //to(room).
+        console.log(`Event fired and the values are ${message} and ${room}`);
+        const user = findUser(socket.id);
+        console.log(`This is the found user : ${JSON.stringify(user.name)}`)
+        io.to(room).emit('message', message, user.name); //to(room).
         callback();
     })
 
