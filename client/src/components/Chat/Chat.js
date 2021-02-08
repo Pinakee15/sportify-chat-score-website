@@ -5,7 +5,7 @@ const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 let socket;
 export default function Chat(props) {
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
 
@@ -19,9 +19,10 @@ export default function Chat(props) {
     socket.emit("join", props.location.userName, props.location.selectedRoom);
 
     socket.on('message', (mssg) => {
-      console.log(`Hurray.... ${messages} and ${mssg}`)
-      setMessages([...messages, mssg]);
-      console.log(`Now,,,, ${messages} and ${mssg}`)
+      console.log(`Hurray.... ${messages} and ${mssg}`);
+      //setMessages([...messages, mssg]);
+      setMessages(prevMessages => [...prevMessages, mssg])
+      console.log(`Now,,,, ${messages} and ${mssg}`);
     });
 
     return () => socket.disconnect();
@@ -34,7 +35,7 @@ export default function Chat(props) {
     e.preventDefault();
     console.log(`Button clicked with value ${e.target}`);
     socket.emit('send message', message, props.location.selectedRoom, () => {
-      setMessages([...messages, message])
+      //setMessages([...messages, message])
       setMessage("");
     });
   }
