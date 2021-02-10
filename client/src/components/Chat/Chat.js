@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
+import getCricketData from '../../apis/cricketApiData';
+import CricketScores from '../CricketScores/CricketScores';
 const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 
 let socket;
@@ -10,7 +12,7 @@ export default function Chat(props) {
   useEffect(() => {
 
     socket = socketIOClient(ENDPOINT);
-    console.log("Entered for the first time");
+    //console.log("Entered for the first time");
 
     socket.on('welcome', (mssg, admin) => {
       setMessages(prevMessages => [...prevMessages, { userName: 'admin', mssg }])
@@ -19,11 +21,7 @@ export default function Chat(props) {
     socket.emit("join", props.location.userName, props.location.selectedRoom);
 
     socket.on('message', (mssg, userName) => {
-      console.log(`Hurray.... ${messages} and ${mssg}`);
-      //setMessages([...messages, mssg]);
-      //setMessages(prevMessages => [...prevMessages, mssg])
       setMessages(prevMessages => [...prevMessages, { userName, mssg }])
-      console.log(`Now,,,, ${messages} and ${mssg}`);
     });
 
     return () => socket.disconnect();
@@ -31,13 +29,15 @@ export default function Chat(props) {
   }, []);
 
   const allMessages = messages.map(message => <p>{message.userName} : {message.mssg}</p>);
-  console.log(`Checking .... ${allMessages} and ${messages}`);
+  //console.log(`Checking .... ${allMessages} and ${messages}`);
 
   const sendMessage = (e) => {
     e.preventDefault();
     console.log(`Button clicked with value ${e.target}`);
     socket.emit('send message', message, props.location.selectedRoom, () => {
+      console.log('Hello dear.....')
       setMessage("");
+      console.log(`The new message value ${message}`)
     });
   }
 
@@ -50,6 +50,7 @@ export default function Chat(props) {
         onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
       />
       <button onClick={(e) => sendMessage(e)}>Send</button>
+      <CricketScores />
     </div>
   );
 }
