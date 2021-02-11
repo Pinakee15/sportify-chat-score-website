@@ -7,10 +7,14 @@ const getCrickeScore = () => {
                 "x-rapidapi-host": "dev132-cricket-live-scores-v1.p.rapidapi.com"
             }
         })
-            .then(response => response.json())
+            .then(response => {
+                //console.log(response.json())
+                return response.json();
+            })
             .then(response => response.matchList.matches)
             .catch(err => {
-                console.error(`This is the error : ${err}`);
+                console.log(`Error while fetching the cricket data`)
+                alert('There is some error fetching the data')
             })
     )
 }

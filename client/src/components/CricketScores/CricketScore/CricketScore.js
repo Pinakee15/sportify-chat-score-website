@@ -1,14 +1,39 @@
 import React from 'react';
+import './CricketScore.css';
 
 const CricketScore = ({ match }) => {
     //console.log(match.scores)
+    const getRandomColor = () => {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    const scores = { ...match.scores };
+    console.log(`This is the value of ${scores}`)
     return (
-        <div>
-            <h5>{match.awayTeam.name} VS {match.homeTeam.name}</h5>
-            {/* <p>{match.scores.awayScore} in {match.scores.awayOvers} | {match.scores.homeScore} in {match.scores.homeOvers}</p> */}
-            <p>{match.matchSummaryText}</p>
+        <div className="container">
+            <div>
+                <div className="title-box">
+                    <div className="team">
+                        <img style={{ backgroundColor: getRandomColor() }} id="homeLogo" />
+                        <p id="homeName">{match.homeTeam.name}</p>
+                        {/* <p>{match['scores']["awayOvers"]}</p> */}
+                        <p id="goals" style={{ fontSize: "1.2vw" }} >{scores.homeScore} in {scores.homeOvers}</p>
+                    </div>
+                    <div className="team">
+                        <img style={{ backgroundColor: getRandomColor() }} id="homeLogo" />
+                        <p id="awayName">{match.awayTeam.name}</p>
+                        <p id="goals" style={{ fontSize: "1.2vw" }} >{scores.awayScore} in {scores.homeOvers}</p>
+                    </div>
+                </div>
+                <p>{match.matchSummaryText}</p>
+            </div>
         </div>
     )
 }
 
 export default CricketScore
+

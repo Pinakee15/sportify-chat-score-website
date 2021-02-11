@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
-import getCricketData from '../../apis/cricketApiData';
 import CricketScores from '../CricketScores/CricketScores';
 const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 
