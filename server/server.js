@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
     socket.on('send message', (message, room, callback) => {
         console.log(`Event fired and the values are ${message} and ${room}`);
         const user = findUser(socket.id);
-        console.log(`This is the found user : ${JSON.stringify(user.name)}`);
+        //console.log(`This is the found user : ${JSON.stringify(user.name)}`);
         io.to(room).emit('message', message, user.name); //to(room).
         callback();
     })

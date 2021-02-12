@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import CricketScores from '../CricketScores/CricketScores';
+import Grid from '@material-ui/core/Grid'
 const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 
 let socket;
@@ -42,15 +43,56 @@ export default function Chat(props) {
 
   return (
     <div>
-      <p>Welcome {props.location.userName} to the {props.location.selectedRoom}</p>
-      { allMessages}
-      <input type="text" placeholder="Enter your message here..."
-        value={message} onChange={(e) => setMessage(e.target.value)}
-        onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
-      />
-      <button onClick={(e) => sendMessage(e)}>Send</button>
-      <CricketScores />
-    </div>
+      <Grid
+        container
+        direction="row"
+        justify="space-evenly"
+        alignItems="stretch"
+      >
+        <Grid item xs={4} style={{ height: '100vh', background: 'linear-gradient(120deg, #17bebb, #f0a6ca)' }}>
+          <div >
+            <p>Welcome {props.location.userName} to the {props.location.selectedRoom}</p>
+            {allMessages}
+            <div style={{ bottom: '0px' }}>
+              <input type="text" placeholder="Enter your message here..."
+                value={message} onChange={(e) => setMessage(e.target.value)}
+                onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
+              />
+              <button onClick={(e) => sendMessage(e)}>Send</button>
+            </div>
+          </div>
+        </Grid>
+
+        <Grid item xs={8} style={{ height: '100vh', overflowY: 'scroll', backgroundColor: "rgb(255,255,255,0.8)" }}>
+          <CricketScores />
+        </Grid>
+      </Grid>
+
+      {/* <Grid
+        container
+        direction="row"
+        // justify="center"
+        alignItems="center"
+      >
+        <Grid item xl={4} spacing={1} style={{ background: 'linear-gradient(120deg, #17bebb, #f0a6ca)', height: '100vh', position: 'fixed', top: '0px' }} >
+          <div>
+            <p>Welcome {props.location.userName} to the {props.location.selectedRoom}</p>
+            {allMessages}
+            <div style={{ bottom: '0px' }}>
+              <input type="text" placeholder="Enter your message here..."
+                value={message} onChange={(e) => setMessage(e.target.value)}
+                onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
+              />
+              <button onClick={(e) => sendMessage(e)}>Send</button>
+            </div>
+          </div>
+        </Grid>
+        <Grid item xl={8} spacing={1}>
+          <CricketScores />
+        </Grid>
+      </Grid> */}
+
+    </div >
   );
 }
 
