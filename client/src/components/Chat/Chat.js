@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import CricketScores from '../CricketScores/CricketScores';
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
+import Message from '../Message/Message';
+import './Chat.css';
 const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 
 let socket;
@@ -12,7 +14,6 @@ export default function Chat(props) {
   useEffect(() => {
 
     socket = socketIOClient(ENDPOINT);
-    //console.log("Entered for the first time");
 
     socket.on('welcome', (mssg, admin) => {
       setMessages(prevMessages => [...prevMessages, { userName: 'admin', mssg }])
@@ -28,7 +29,7 @@ export default function Chat(props) {
 
   }, []);
 
-  const allMessages = messages.map(message => <p>{message.userName} : {message.mssg}</p>);
+  const allMessages = messages.map((message, idx) => <Message userName={message.userName} message={message.mssg} key={idx} />);
   //console.log(`Checking .... ${allMessages} and ${messages}`);
 
   const sendMessage = (e) => {
@@ -50,20 +51,24 @@ export default function Chat(props) {
         alignItems="stretch"
       >
         <Grid item xs={4} style={{ height: '100vh', background: 'linear-gradient(120deg, #17bebb, #f0a6ca)' }}>
-          <div >
-            <p>Welcome {props.location.userName} to the {props.location.selectedRoom}</p>
-            {allMessages}
-            <div style={{ bottom: '0px' }}>
-              <input type="text" placeholder="Enter your message here..."
-                value={message} onChange={(e) => setMessage(e.target.value)}
-                onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
-              />
-              <button onClick={(e) => sendMessage(e)}>Send</button>
+          <div class='container' ng-cloak ng-app="chatApp">
+            <h1>Welcome {props.location.userName} to the {props.location.selectedRoom}</h1>
+            <div className='chatbox' ng-controller="MessageCtrl as chatMessage">
+              {allMessages}
+              <form>
+                <input type="text" placeholder="Enter your message here..."
+                  value={message} onChange={(e) => setMessage(e.target.value)}
+                  onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
+                />
+                <button onClick={(e) => sendMessage(e)}>Send</button>
+              </form>
             </div>
           </div>
         </Grid>
 
-        <Grid item xs={8} style={{ height: '100vh', overflowY: 'scroll', backgroundColor: "rgb(255,255,255,0.8)" }}>
+        <Grid item xs={8} style={{
+          height: '100vh', overflowY: 'scroll', backgroundColor: "rgb(255,255,255,0.9)"
+        }}>
           <CricketScores />
         </Grid>
       </Grid>

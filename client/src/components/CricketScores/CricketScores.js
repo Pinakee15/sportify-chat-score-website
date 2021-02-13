@@ -15,8 +15,11 @@ const CricketScores = () => {
     }, []);
     const allMatches = matches.map((match, id) => <CricketScore match={match} key={id} />);
     return (
-        <div className="scoreContainer">
-            {allMatches}
+        <div>
+            <h1 style={{ textAlign: "center" }}><b>-Scoreboard-</b></h1>
+            <div className="scoreContainer">
+                {allMatches}
+            </div>
         </div>
     )
 }
