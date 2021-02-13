@@ -1,6 +1,36 @@
-.container{
+.ScoreContainer{
+    position:relative;
+}
+.ScoreContainer:hover{
 
 }
+
+.ScoreContainer:after{
+    /* box-shadow: 0px 3px 3px grey; */
+    content:'';
+    height:3px;
+    width:12%;
+    background:linear-gradient(120deg, #17bebb, #f0a6ca);
+    position:absolute;
+    left:calc(50% - 6%);
+    bottom:-20px;  
+}
+
+
+.underline-small{
+    color:green;
+    display:inline-block;
+    position:relative;
+  }
+  .underline-small::after{
+    content:'';
+    height:2px;
+    width:20%;
+    background:#f24432;
+    position:absolute;
+    left:calc(50% - 10%);
+    bottom:-5px;  
+  }
 
 .title-box{
     margin: 25px 0;

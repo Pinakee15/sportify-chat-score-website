@@ -14,7 +14,7 @@ const CricketScore = ({ match }) => {
     const scores = { ...match.scores };
     console.log(`This is the value of ${scores}`)
     return (
-        <div className="container">
+        <div className="ScoreContainer">
             <div>
                 <div className="title-box">
                     <div className="team">
@@ -23,6 +23,7 @@ const CricketScore = ({ match }) => {
                         {/* <p>{match['scores']["awayOvers"]}</p> */}
                         <p id="goals" style={{ fontSize: "1.2vw" }} >{scores.homeScore} in {scores.homeOvers}</p>
                     </div>
+                    <img src="https://raw.githubusercontent.com/LearnCodeWithDurgesh/Live-Cricket-Score/master/src/img/vs.png" alt="VS" height="85" width="60" />
                     <div className="team">
                         <img style={{ backgroundColor: getRandomColor() }} id="homeLogo" />
                         <p id="awayName">{match.awayTeam.name}</p>

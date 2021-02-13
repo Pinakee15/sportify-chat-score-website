@@ -73,30 +73,6 @@ export default function Chat(props) {
         </Grid>
       </Grid>
 
-      {/* <Grid
-        container
-        direction="row"
-        // justify="center"
-        alignItems="center"
-      >
-        <Grid item xl={4} spacing={1} style={{ background: 'linear-gradient(120deg, #17bebb, #f0a6ca)', height: '100vh', position: 'fixed', top: '0px' }} >
-          <div>
-            <p>Welcome {props.location.userName} to the {props.location.selectedRoom}</p>
-            {allMessages}
-            <div style={{ bottom: '0px' }}>
-              <input type="text" placeholder="Enter your message here..."
-                value={message} onChange={(e) => setMessage(e.target.value)}
-                onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
-              />
-              <button onClick={(e) => sendMessage(e)}>Send</button>
-            </div>
-          </div>
-        </Grid>
-        <Grid item xl={8} spacing={1}>
-          <CricketScores />
-        </Grid>
-      </Grid> */}
-
     </div >
   );
 }
