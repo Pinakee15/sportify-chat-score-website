@@ -50,25 +50,23 @@ export default function Chat(props) {
         justify="space-evenly"
         alignItems="stretch"
       >
-        <Grid item xs={4} style={{ height: '100vh', background: 'linear-gradient(120deg, #17bebb, #f0a6ca)' }}>
+        <Grid className="GridChatContainer" item xs={12} sm={12} md={4} lg={4} xl={4}>
           <div class='container' ng-cloak ng-app="chatApp">
             <h1>Welcome {props.location.userName} to the {props.location.selectedRoom}</h1>
             <div className='chatbox' ng-controller="MessageCtrl as chatMessage">
               {allMessages}
-              <form>
-                <input type="text" placeholder="Enter your message here..."
+              <div className='chatInputHandler'>
+                <input className="chatInput" type="text" placeholder="Enter your message here..."
                   value={message} onChange={(e) => setMessage(e.target.value)}
                   onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
                 />
-                <button onClick={(e) => sendMessage(e)}>Send</button>
-              </form>
+                <button className="chatButton" onClick={(e) => sendMessage(e)}>Send</button>
+              </div>
             </div>
           </div>
         </Grid>
 
-        <Grid item xs={8} style={{
-          height: '100vh', overflowY: 'scroll', backgroundColor: "rgb(255,255,255,0.9)"
-        }}>
+        <Grid className="GridScoreContainer" item xs={12} sm={12} md={8} lg={8} xl={8} >
           <CricketScores />
         </Grid>
       </Grid>
