@@ -1,27 +1,17 @@
 import React, { useState } from 'react';
 import Room from '../Room/Room';
+import Grid from '@material-ui/core/Grid';
 
 function Rooms({ rooms, selectOneRoom }) {
-    // const initialRooms = [
-    //     { room: "Room 1", status: false },
-    //     { room: "Room 2", status: false },
-    //     { room: "Room 3", status: false },
-    // ]
-    // const [rooms, setRooms] = useState(initialRooms);
-
-    // const selectOneRoom = (index, newStatus) => {
-    //     console.log("we clicked the Room :");
-    //     const tempRooms = [...initialRooms]
-    //     tempRooms[index].status = newStatus;
-    //     setRooms(tempRooms);
-    // }
 
     console.log(rooms);
-    const newRooms = rooms.map((ob, idx) => (<Room key={idx} index={idx} roomName={ob.room} selectOneRoom={selectOneRoom} status={ob.status} />));
+    const newRooms = rooms.map((ob, idx) => (<Grid spacing={1} item xs={12} sm={12} md={6} lg={6} xl={6}>
+        <Room key={idx} index={idx} roomName={ob.room} selectOneRoom={selectOneRoom} status={ob.status} url={ob.url} />
+    </Grid>));
     return (
-        <div>
+        <Grid container direction="row" justify="space-evenly" alignItems="stretch">
             {newRooms}
-        </div>
+        </Grid>
     )
 }
 
