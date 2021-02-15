@@ -34,7 +34,8 @@
     position : relative;
     font-size: 0.75em;
     left : 42.5%;
-    margin-top : 5px;
+    margin-top : 7px;
+    margin-bottom: 0px;
     border-radius: 5px;
 }
 

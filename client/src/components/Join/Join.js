@@ -11,6 +11,7 @@ function Join() {
     const [selectedRoom, setSelectedRoom] = useState(null);
     const [rooms, setRooms] = useState(initialRooms);
     const [userName, setUserName] = useState("");
+    const [warningMessage, setWarningMessage] = useState("");
 
     const selectOneRoom = (index, newStatus) => {
         console.log("we clicked the Room :");
@@ -18,6 +19,17 @@ function Join() {
         tempRooms[index].status = newStatus;
         setRooms(tempRooms);
         setSelectedRoom(initialRooms[index].room)
+    }
+    console.log(`This is the warning message ${warningMessage}`)
+    const checkInputStatus = () => {
+        console.log("Check function fired ....")
+        if (userName === "" || selectOneRoom === null || userName === null) {
+            console.log('Entered into if of cjec')
+            setWarningMessage("Please enter both, username and chatroom");
+        }
+        else {
+            setWarningMessage("");
+        }
     }
 
     return (
@@ -29,10 +41,11 @@ function Join() {
             <Link to={{
                 pathname: "/chat",
                 userName,
-                selectedRoom
-            }}>
-                <button className={styles.buttonInput}>SUBMIT</button>
+                selectedRoom,
+            }} onClick={checkInputStatus} >
+                <button className={styles.buttonInput} >SUBMIT</button>
             </Link>
+            <p>{warningMessage}</p>
         </div>
     )
 }

@@ -155,6 +155,9 @@
     overflow-y: scroll;
     background-color: rgb(255,255,255,0.9);
   }
+  .GridChatContainer{
+    overflow-y: scroll;
+  }
 
   @media only screen and (max-width: 960px) {
     .GridChatContainer {

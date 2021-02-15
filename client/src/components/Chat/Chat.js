@@ -3,6 +3,7 @@ import socketIOClient from "socket.io-client";
 import CricketScores from '../CricketScores/CricketScores';
 import Grid from '@material-ui/core/Grid';
 import Message from '../Message/Message';
+import { Route, Redirect } from 'react-router-dom';
 import './Chat.css';
 const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 
@@ -10,10 +11,18 @@ let socket;
 export default function Chat(props) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [redirect, setRedirect] = useState(false);
+
+  //console.log(`This message is coming from my latest probe... ${props.location.userName} `)
 
   useEffect(() => {
 
     socket = socketIOClient(ENDPOINT);
+
+    socket.on('redirect', () => {
+      console.log("Redirect request sent by server..");
+      setRedirect(true);
+    })
 
     socket.on('welcome', (mssg, admin) => {
       setMessages(prevMessages => [...prevMessages, { userName: 'admin', mssg }])
@@ -25,7 +34,9 @@ export default function Chat(props) {
       setMessages(prevMessages => [...prevMessages, { userName, mssg }])
     });
 
-    return () => socket.disconnect();
+    return () => {
+      socket.disconnect();
+    }
 
   }, []);
 
@@ -35,14 +46,18 @@ export default function Chat(props) {
   const sendMessage = (e) => {
     e.preventDefault();
     console.log(`Button clicked with value ${e.target}`);
-    socket.emit('send message', message, props.location.selectedRoom, () => {
+    socket.emit('send message', message, props.location.selectedRoom, props.location.userName, () => {
       console.log('Hello dear.....')
       setMessage("");
       console.log(`The new message value ${message}`)
     });
   }
 
-  return (
+  if (redirect) {
+    return <Redirect to="/" />
+  }
+
+  else return (
     <div>
       <Grid
         container
@@ -52,7 +67,7 @@ export default function Chat(props) {
       >
         <Grid className="GridChatContainer" item xs={12} sm={12} md={4} lg={4} xl={4}>
           <div class='container' ng-cloak ng-app="chatApp">
-            <h1>Welcome {props.location.userName} to the {props.location.selectedRoom}</h1>
+            <h1>Welcome {props.location.userName} . Chat with other {props.location.selectedRoom} fans. </h1>
             <div className='chatbox' ng-controller="MessageCtrl as chatMessage">
               {allMessages}
               <div className='chatInputHandler'>
@@ -70,9 +85,10 @@ export default function Chat(props) {
           <CricketScores />
         </Grid>
       </Grid>
-
     </div >
   );
+
+
 }
 
 //testing
