@@ -3,7 +3,9 @@ import socketIOClient from "socket.io-client";
 import CricketScores from '../CricketScores/CricketScores';
 import Grid from '@material-ui/core/Grid';
 import Message from '../Message/Message';
-import { Route, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+//import NavbarComp from '../Navbar/NavbarComp';
+import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import './Chat.css';
 // const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 const ENDPOINT = "https://sportify-pinakee-app.herokuapp.com/";
@@ -13,8 +15,6 @@ export default function Chat(props) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [redirect, setRedirect] = useState(false);
-
-  //console.log(`This message is coming from my latest probe... ${props.location.userName} `)
 
   useEffect(() => {
 

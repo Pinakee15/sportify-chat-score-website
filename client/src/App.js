@@ -1,8 +1,9 @@
-//import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Chat from './components/Chat/Chat';
 import Join from './components/Join/Join.js';
-import React, { useState } from "react";
+// import NavbarComp from './components/Navbar/NavbarComp';
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
 
 
 //import ClientComponent from "./ClientComponent";
@@ -12,6 +13,7 @@ function App() {
     return (
         <Router>
             <div className="App" >
+                {/* <NavbarComp /> */}
                 <Switch>
                     <Route path="/" exact component={Join} ></Route>
                     <Route path="/chat" component={Chat} ></Route>
