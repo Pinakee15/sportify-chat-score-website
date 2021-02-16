@@ -1,17 +1,21 @@
 .Room{
     /* border: 1px solid red; */
     margin: 2px auto;
-    width: 85%;
-    padding: 15px;
+    width: 92.8%;
+    padding: 9px;
     text-decoration: none;
     box-shadow: 1px 4px 11px rgb(255,255,242);
-    border-radius: 0px 7px 0px 7px;
+    border-radius: 7px;
     /* background-color: #dcf2f5; */
     background-color: rgb(255,255,242);
-    border : 2px solid orange;
+    border : 2px solid rgb(219, 110, 110);
+    transition-property: width;
+    transition-duration: 0.4s;
 }
 
 .Room:hover{
-    background-color: #dcf2f5;
-    width: 86%;
+    /* background-color: #dcf2f5; */
+    width: 88%;
+    box-shadow: 4px 4px 12px white;
+    cursor: pointer;
 }

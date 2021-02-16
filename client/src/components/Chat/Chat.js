@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Message from '../Message/Message';
 import { Redirect } from 'react-router-dom';
 //import NavbarComp from '../Navbar/NavbarComp';
-import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import './Chat.css';
 // const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 const ENDPOINT = "https://sportify-pinakee-app.herokuapp.com/";

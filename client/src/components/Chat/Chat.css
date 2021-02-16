@@ -32,7 +32,7 @@
   }
 
   .chatbox__messages__user-message {
-    width: 450px;
+    width: 100%;
   }
   
   .chatbox__messages__user-message--ind-message {
@@ -41,8 +41,8 @@
     height: auto;
     width: 65%;
     border-radius: 5px;
-    margin: 1.5em 1em;
-    overflow: auto;
+    margin: 1.2em 1.4em;
+    overflow: hidden;
   }
   
   .chatbox__messages__user-message--ind-message > p.name {
@@ -101,7 +101,7 @@
     font-size: 0.7em;
     font-weight: 300;
     color: #FFF;
-    width: 200px;
+    width: 80%;
   }
   
   .chatInputHandler{

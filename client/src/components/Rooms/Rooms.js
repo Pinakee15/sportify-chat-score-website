@@ -9,7 +9,7 @@ function Rooms({ rooms, selectOneRoom }) {
         <Room key={idx} index={idx} roomName={ob.room} selectOneRoom={selectOneRoom} status={ob.status} url={ob.url} />
     </Grid>));
     return (
-        <Grid container direction="row" justify="space-evenly" alignItems="stretch">
+        <Grid container direction="row" justify="space-evenly" >
             {newRooms}
         </Grid>
     )

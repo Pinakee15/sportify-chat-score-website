@@ -6,9 +6,9 @@ function Room({ index, roomName, selectOneRoom, status, url }) {
 
     const changeColor = selectOneRoom;
     return (
-        <div style={status ? { backgroundColor: "rgb(255,255,242)", boxShadow: '2px 2px 12px white', border: "none" } : null} className={styles.Room} onClick={() => changeColor(index, !status)}>
+        <div style={status ? { backgroundColor: "#dcf2f5", boxShadow: '18px 18px 20px white', border: "none", border: "3px solid rgb(219, 110, 110)" } : null} className={styles.Room} onClick={() => changeColor(index, !status)}>
             <img src={url} height="100%" width="100%" />
-            <p>Live {roomName} score + chatroom </p>
+            <p style={{ marginTop: '10px', textAlign: 'center' }}>Live {roomName} score + chatroom </p>
         </div>
     )
 }

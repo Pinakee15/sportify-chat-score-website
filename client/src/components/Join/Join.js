@@ -7,8 +7,8 @@ import styles from "./Join.module.css";
 
 function Join() {
     const initialRooms = [
-        { room: "Cricket", status: true, url: "https://images.firstpost.com/wp-content/uploads/2020/11/Shane-Watson-CSK-KKR-Sportzpics-640.jpg" },
-        { room: "Football", status: true, url: "https://images.daznservices.com/di/library/GOAL/51/40/lionel-messi-barcelona-2019-20_aaw4sdccpne11vaux71yrujuz.jpg?t=-1168207920&quality=100" }
+        { room: "Cricket", status: false, url: "https://images.firstpost.com/wp-content/uploads/2020/11/Shane-Watson-CSK-KKR-Sportzpics-640.jpg" },
+        { room: "Football", status: false, url: "https://images.daznservices.com/di/library/GOAL/51/40/lionel-messi-barcelona-2019-20_aaw4sdccpne11vaux71yrujuz.jpg?t=-1168207920&quality=100" }
     ];
     const [selectedRoom, setSelectedRoom] = useState(null);
     const [rooms, setRooms] = useState(initialRooms);
@@ -38,16 +38,16 @@ function Join() {
         <>
             <NavbarComp />
             <div className={styles.container}>
-                <h1 className={styles.BrandHeading}>Welcome to the Sportify</h1>
+                <h1 className={styles.BrandHeading}>Welcome to Sportify</h1>
                 <input className={styles.nameInput} placeholder="Type your user name here" onChange={(event) => setUserName(event.target.value)} ></input>
-                <h5 className={styles.subHeading}>Which sports room you want to join :</h5>
+                <h6 className={styles.subHeading}><strong>-Which sports room you want to join-</strong></h6>
                 < Rooms rooms={rooms} selectOneRoom={selectOneRoom} />
                 <Link to={{
                     pathname: "/chat",
                     userName,
                     selectedRoom,
                 }} onClick={checkInputStatus} >
-                    <button className={styles.buttonInput} >SUBMIT</button>
+                    <button className={styles.buttonInput} ><strong>SUBMIT</strong></button>
                 </Link>
                 <p>{warningMessage}</p>
             </div>
