@@ -5,7 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import Message from '../Message/Message';
 import { Route, Redirect } from 'react-router-dom';
 import './Chat.css';
-const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
+// const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
+const ENDPOINT = "https://sportify-pinakee-app.herokuapp.com/";
 
 let socket;
 export default function Chat(props) {

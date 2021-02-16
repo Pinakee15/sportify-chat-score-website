@@ -3,6 +3,7 @@ const port = process.env.PORT || 5000;
 const app = express();
 const http = require("http").createServer(app);
 const { addUser, findUser, showUser, deleteUser } = require('./User.js');
+const cors = require('cors');
 
 //Setting the socket io server
 
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 // Setting up the middleware
+app.use(cors());
 app.use(express.json());
 
 // Handling the Chat socket.io APIs .
