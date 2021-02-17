@@ -31,7 +31,7 @@ const CricketScore = ({ match }) => {
                         <p id="goals" style={{ fontSize: "1.2vw" }} >{scores.awayScore} in {scores.awayOvers}</p>
                     </div>
                 </div>
-                <p>{match.matchSummaryText}</p>
+                <p><span>{match.status === "COMPLETED" ? (<strong style={{ color: 'red' }}>COMPLETED :</strong>) : (<strong style={{ color: 'green' }}>LIVE </strong>)}</span> {match.matchSummaryText}</p>
             </div>
         </div>
     )

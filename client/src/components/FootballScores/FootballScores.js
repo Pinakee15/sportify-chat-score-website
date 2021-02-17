@@ -17,6 +17,7 @@ const FootballScores = () => {
     return (
         <div>
             <h1 style={{ textAlign: "center" }}><b>-Scoreboard-</b></h1>
+            <p style={{ color: 'red', textAlign: 'center', fontSize: '12px' }}>Open another tab in browser with same chat room to test</p>
             <div className="scoreContainer">
                 {allMatches}
             </div>

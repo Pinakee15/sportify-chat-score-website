@@ -45,12 +45,13 @@ io.on("connection", (socket) => {
     socket.on('send message', (message, room, userName, callback) => {
         console.log(`Event fired and the values are ${message} and ${room}`);
         const user = findUser(socket.id);
-        //console.log(`This is the found user : ${JSON.stringify(user.name)}`);
         io.to(room).emit('message', message, userName); //to(room).
         callback();
     })
 
     socket.on('disconnect', () => {
+        const user = findUser(socket.id);
+        io.to(user.room).emit('user left', user.name)
         deleteUser(socket.id);
         console.log(`No of user : `, showUser());
         console.log("The user disconnected..");

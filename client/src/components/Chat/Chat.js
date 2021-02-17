@@ -7,8 +7,8 @@ import Message from '../Message/Message';
 import { Redirect } from 'react-router-dom';
 import './Chat.css';
 import FootballScore from "../CricketScores/CricketScore/CricketScore";
-// const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
-const ENDPOINT = "https://sportify-pinakee-app.herokuapp.com/";
+const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
+// const ENDPOINT = "https://sportify-pinakee-app.herokuapp.com/";
 
 let socket;
 export default function Chat(props) {
@@ -34,6 +34,10 @@ export default function Chat(props) {
     socket.on('message', (mssg, userName) => {
       setMessages(prevMessages => [...prevMessages, { userName, mssg }])
     });
+
+    socket.on('user left', userName => {
+      setMessages(prevMessages => [...prevMessages, { userName: 'admin', mssg: `${userName} left` }]);
+    })
 
     return () => {
       socket.disconnect();

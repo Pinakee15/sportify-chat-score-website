@@ -10,7 +10,7 @@
     font-size: 19px;
     color: white; 
     transition-property:  background-color;
-    transition-duration: 0.7s;
+    transition-duration: 0.6s;
     padding : 5px;
     border-bottom: 3px solid orange;
 } 
@@ -22,20 +22,20 @@
     font-size: 19px;
     color: white; 
     transition-property:  background-color;
-    transition-duration: 0.7s;
+    transition-duration: 0.6s;
     padding : 5px;
     border-bottom: 3px solid orange;
 } 
 
 .NavLink1:hover{
     background-color: rgb(265,165,0);
-    border-bottom: 1px solid orange;
+    /* border-bottom: 2px solid orange; */
     /* font-size: 20px; */
 } 
 
 .NavLink2:hover{
     background-color: rgb(265,165,0,1);
-    border-bottom: 1px solid orange;
+    /* border-bottom: 2px solid orange; */
     /* font-size: 20px; */
 } 
 
