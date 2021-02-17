@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from "./Room.module.css";
-import { Link } from "react-router-dom";
 
 function Room({ index, roomName, selectOneRoom, status, url }) {
 

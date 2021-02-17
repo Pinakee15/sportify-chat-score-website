@@ -40,7 +40,7 @@ function Join() {
             <div className={styles.container}>
                 <h1 className={styles.BrandHeading}>Welcome to Sportify</h1>
                 <input className={styles.nameInput} placeholder="Type your user name here" onChange={(event) => setUserName(event.target.value)} ></input>
-                <h6 className={styles.subHeading}><strong>-Which sports room you want to join-</strong></h6>
+                <h6 className={styles.subHeading}><strong>--Choose your sports room--</strong></h6>
                 < Rooms rooms={rooms} selectOneRoom={selectOneRoom} />
                 <Link to={{
                     pathname: "/chat",

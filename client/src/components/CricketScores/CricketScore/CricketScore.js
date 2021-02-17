@@ -1,4 +1,5 @@
 import React from 'react';
+// import CricketScore from '../../FootballScores/FootballScore/FootballScore';
 import './CricketScore.css';
 
 const CricketScore = ({ match }) => {
@@ -27,7 +28,7 @@ const CricketScore = ({ match }) => {
                     <div className="team">
                         <img style={{ backgroundColor: getRandomColor() }} id="homeLogo" />
                         <p id="awayName">{match.awayTeam.name}</p>
-                        <p id="goals" style={{ fontSize: "1.2vw" }} >{scores.awayScore} in {scores.homeOvers}</p>
+                        <p id="goals" style={{ fontSize: "1.2vw" }} >{scores.awayScore} in {scores.awayOvers}</p>
                     </div>
                 </div>
                 <p>{match.matchSummaryText}</p>

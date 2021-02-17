@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import socketIOClient from "socket.io-client";
 import CricketScores from '../CricketScores/CricketScores';
+import FootballScores from '../FootballScores/FootballScores';
 import Grid from '@material-ui/core/Grid';
 import Message from '../Message/Message';
 import { Redirect } from 'react-router-dom';
-//import NavbarComp from '../Navbar/NavbarComp';
-// import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import './Chat.css';
+import FootballScore from "../CricketScores/CricketScore/CricketScore";
 // const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
 const ENDPOINT = "https://sportify-pinakee-app.herokuapp.com/";
 
@@ -68,7 +68,7 @@ export default function Chat(props) {
       >
         <Grid className="GridChatContainer" item xs={12} sm={12} md={4} lg={4} xl={4}>
           <div class='container' ng-cloak ng-app="chatApp">
-            <h1>Welcome {props.location.userName} . Chat with other {props.location.selectedRoom} fans. </h1>
+            <h2>Welcome {props.location.userName} . Chat with other {props.location.selectedRoom} fans. </h2>
             <div className='chatbox' ng-controller="MessageCtrl as chatMessage">
               {allMessages}
               <div className='chatInputHandler'>
@@ -83,7 +83,11 @@ export default function Chat(props) {
         </Grid>
 
         <Grid className="GridScoreContainer" item xs={12} sm={12} md={8} lg={8} xl={8} >
-          <CricketScores />
+          {props.location.selectedRoom === 'Cricket' ? (
+            <CricketScores />)
+            : (
+              <FootballScores />
+            )}
         </Grid>
       </Grid>
     </div >
