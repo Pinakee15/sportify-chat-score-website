@@ -6,15 +6,15 @@ import Grid from '@material-ui/core/Grid';
 import Message from '../Message/Message';
 import { Redirect } from 'react-router-dom';
 import './Chat.css';
-import FootballScore from "../CricketScores/CricketScore/CricketScore";
-const ENDPOINT = "localhost:5000" //"http://127.0.0.1:5000";
-// const ENDPOINT = "https://sportify-pinakee-app.herokuapp.com/";
+// const ENDPOINT = "http://localhost:5000/";
+const ENDPOINT = "https://pinakee-sportify-app.herokuapp.com/";
 
 let socket;
 export default function Chat(props) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [redirect, setRedirect] = useState(false);
+  const [totalUsers, setTotalUsers] = useState(0);
 
   useEffect(() => {
 
@@ -25,9 +25,12 @@ export default function Chat(props) {
       setRedirect(true);
     })
 
-    socket.on('welcome', (mssg, admin) => {
+    socket.on('User joined', (mssg) => {
       setMessages(prevMessages => [...prevMessages, { userName: 'admin', mssg }])
     });
+    socket.on('welcome user', (message) => {
+      setMessages(prevMessages => [...prevMessages, { userName: 'admin', mssg: message }])
+    })
 
     socket.emit("join", props.location.userName, props.location.selectedRoom);
 
@@ -37,6 +40,10 @@ export default function Chat(props) {
 
     socket.on('user left', userName => {
       setMessages(prevMessages => [...prevMessages, { userName: 'admin', mssg: `${userName} left` }]);
+    });
+
+    socket.on('total users', (total) => {
+      setTotalUsers(total);
     })
 
     return () => {
@@ -64,6 +71,9 @@ export default function Chat(props) {
 
   else return (
     <div>
+      <p className="totalUsers">
+        Users online-{totalUsers}
+      </p>
       <Grid
         container
         direction="row"
@@ -72,9 +82,11 @@ export default function Chat(props) {
       >
         <Grid className="GridChatContainer" item xs={12} sm={12} md={4} lg={4} xl={4}>
           <div class='container' ng-cloak ng-app="chatApp">
-            <h2>Welcome {props.location.userName} . Chat with other {props.location.selectedRoom} fans. </h2>
+            <h3><strong>Welcome {props.location.userName}. Chat with other {props.location.selectedRoom} fans.</strong></h3>
             <div className='chatbox' ng-controller="MessageCtrl as chatMessage">
-              {allMessages}
+              <div style={{ position: 'relative', bottom: '9%', backgroundColor: 'red' }}>
+                {allMessages}
+              </div>
               <div className='chatInputHandler'>
                 <input className="chatInput" type="text" placeholder="Enter your message here..."
                   value={message} onChange={(e) => setMessage(e.target.value)}
@@ -87,10 +99,10 @@ export default function Chat(props) {
         </Grid>
 
         <Grid className="GridScoreContainer" item xs={12} sm={12} md={8} lg={8} xl={8} >
-          {props.location.selectedRoom === 'Cricket' ? (
-            <CricketScores />)
+          {props.location.selectedRoom === 'Football' ? (
+            <FootballScores />)
             : (
-              <FootballScores />
+              <CricketScores />
             )}
         </Grid>
       </Grid>

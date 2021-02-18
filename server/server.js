@@ -36,7 +36,10 @@ io.on("connection", (socket) => {
         else {
             console.log(`The user ${userName} registered to the room ${room}`);
             socket.join(room);
-            socket.to(room).emit('welcome', `${userName} has joined the room.`);
+            socket.to(room).emit('User joined', `${userName} has joined the room.`);
+            socket.emit('welcome user', `Welcome ${userName}. Grab the popcorn and enjoy ${room} with others.`);
+            const allUsers = showUser();
+            io.to(room).emit('total users', (allUsers.length));
             addUser(socket.id, userName, room);
             console.log(showUser());
         }
@@ -51,10 +54,15 @@ io.on("connection", (socket) => {
 
     socket.on('disconnect', () => {
         const user = findUser(socket.id);
-        io.to(user.room).emit('user left', user.name)
-        deleteUser(socket.id);
-        console.log(`No of user : `, showUser());
-        console.log("The user disconnected..");
+        console.log(`This is the value of user ${JSON.stringify(user)}`);
+        if (user !== undefined) {
+            const room = user.room;
+            io.to(room).emit('user left', user.name);
+            deleteUser(socket.id);
+            io.to(room).emit('total users', (showUser().length - 1))
+        }
+        // console.log(`No of user : `, showUser());
+        // console.log("The user disconnected..");
         socket.emit('redirect');
     });
 });

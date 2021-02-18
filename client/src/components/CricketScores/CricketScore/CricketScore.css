@@ -46,7 +46,7 @@
     font-size: 1.8em;
 }
 .team{
-    width: 100px;
+    width: 120px;
 }
 .team img{
     height: 54px;
@@ -80,5 +80,5 @@
     font-size: 1.8rem;
 }
 .match-tile .team{
-    width: 100px;
+    width: 150px;
 }

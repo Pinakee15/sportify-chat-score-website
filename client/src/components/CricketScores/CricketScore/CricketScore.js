@@ -20,15 +20,15 @@ const CricketScore = ({ match }) => {
                 <div className="title-box">
                     <div className="team">
                         <img style={{ backgroundColor: getRandomColor() }} id="homeLogo" />
-                        <p id="homeName">{match.homeTeam.name}</p>
+                        <p id="homeName" style={{ fontSize: "3vh" }}>{match.homeTeam.name}</p>
                         {/* <p>{match['scores']["awayOvers"]}</p> */}
-                        <p id="goals" style={{ fontSize: "1.2vw" }} >{scores.homeScore} in {scores.homeOvers}</p>
+                        <p id="goals" style={{ fontSize: "2.3vh" }} >{scores.homeScore} in {scores.homeOvers}</p>
                     </div>
                     <img src="https://raw.githubusercontent.com/LearnCodeWithDurgesh/Live-Cricket-Score/master/src/img/vs.png" alt="VS" height="85" width="60" />
                     <div className="team">
                         <img style={{ backgroundColor: getRandomColor() }} id="homeLogo" />
-                        <p id="awayName">{match.awayTeam.name}</p>
-                        <p id="goals" style={{ fontSize: "1.2vw" }} >{scores.awayScore} in {scores.awayOvers}</p>
+                        <p id="awayName" style={{ fontSize: "3vh" }}>{match.awayTeam.name}</p>
+                        <p id="goals" style={{ fontSize: "2.3vh" }} >{scores.awayScore} in {scores.awayOvers}</p>
                     </div>
                 </div>
                 <p><span>{match.status === "COMPLETED" ? (<strong style={{ color: 'red' }}>COMPLETED :</strong>) : (<strong style={{ color: 'green' }}>LIVE </strong>)}</span> {match.matchSummaryText}</p>

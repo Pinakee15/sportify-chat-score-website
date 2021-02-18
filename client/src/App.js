@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Chat from './components/Chat/Chat';
 import Join from './components/Join/Join.js';
+import About from './components/About/About.js';
+import Contact from './components/Contact/Contact.js';
+import NotFound from "./components/NotFound/NotFound"
 // import NavbarComp from './components/Navbar/NavbarComp';
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
@@ -17,6 +20,9 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={Join} ></Route>
                     <Route path="/chat" component={Chat} ></Route>
+                    <Route path="/about" component={About}></Route>
+                    <Route path='/contact' component={Contact}></Route>
+                    <Route component={NotFound} />
                 </Switch>
             </div>
         </Router>

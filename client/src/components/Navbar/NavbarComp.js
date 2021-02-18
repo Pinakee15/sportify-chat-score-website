@@ -7,22 +7,24 @@ import './NavbarComp.css';
 const NavbarComp = () => {
     return (
         <div>
-
             <Navbar collapseOnSelect expand="lg" fixed="top" variant="dark">
-                <Navbar.Brand className="NavbarBrand" style={{ fontSize: '35px' }} >Sportify</Navbar.Brand>
+                <Link to="/">
+                    <Navbar.Brand className="NavbarBrand" style={{ fontSize: '35px' }} >Sportify</Navbar.Brand>
+                </Link>
+
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
 
                     </Nav>
                     <Nav >
-                        <Link to="/chat" style={{ textDecoration: 'none' }}>
-                            <Nav.Link className="NavLink1" style={{ color: 'white', textDecoration: 'none' }}>Voice sports news.</Nav.Link>
+                        <Link to="/about" style={{ textDecoration: 'none' }}>
+                            <div className="NavLink1" style={{ color: 'white', textDecoration: 'none' }}>About Sportify</div>
                         </Link>
-                        <Link style={{ textDecoration: 'none' }}>
-                            <Nav.Link className="NavLink2" style={{ color: 'white' }}>
-                                About
-                            </Nav.Link>
+                        <Link to="/contact" style={{ textDecoration: 'none' }}>
+                            <div className="NavLink2" style={{ color: 'white' }}>
+                                Contact Me
+                            </div>
                         </Link>
                     </Nav>
                 </Navbar.Collapse>

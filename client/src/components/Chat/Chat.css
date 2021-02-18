@@ -1,4 +1,7 @@
-  
+  body{
+    /* overflow-y: hidden; */
+  }
+
   .container h2 {
     margin: 0.5em auto;
     color: #FFF;
@@ -104,35 +107,31 @@
     width: 80%;
   }
   
-  .chatInputHandler{
-    position: fixed;
-    bottom: 0;
-    z-index: 4;
-    left : 0;
-  }
-  
+
   .chatInput {
     background: rgba(255, 255, 255, 1);
     border: none;
     width: 75%;
-    padding: 1.2em 0px;
+    /* padding: 1.2em 0px; */
     outline: none;
     font-weight: 300;
     display: inline;
+    height: 100%;
   }
-
-::placeholder{
-  color: pink;
-}
 
   .chatButton{
     background: #EAEBE5;
     border: none;
     display: inline;
-    padding: 1.2em 0px;
+    /* padding: 1.2em 0px; */
     width: 25%;
     font-weight: 500;
+    height: 100%;
   }
+
+::placeholder{
+  color: pink;
+}
   
   ::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.9);
@@ -155,33 +154,112 @@
   .GridScoreContainer{
     overflow-y: scroll;
     background-color: rgb(255,255,255,0.95);
+    position: fixed;
   }
   .GridChatContainer{
     overflow-y: scroll;
+    position: fixed;
+  }
+
+  .chatInputHandler{
+    position: fixed;
+    bottom: 0;
+    z-index: 5;
+    left : 0;
+    height: 8.2%;
+    background-color: rgb(234,235,229);
+  }
+
+  .GridChatContainer h3{
+    /* position: fixed;
+    top: 0%;
+    left:0%; */
+    color: white;
+    text-align: center;
+    padding-top: 6px;
+    height: 10%;
+  }
+
+  .totalUsers{
+    position: fixed;
+    top: 0%; 
+    left: 34.4%;
+    background:green;
+    z-index: 7;
+    padding : 2px 4px;
+    border-radius: 0px 0px 6px 6px;
+    color: white;
   }
 
   @media only screen and (max-width: 960px) {
     .GridChatContainer {
-      height: 50vh;
+      /* height: 50vh; */
       background: linear-gradient(120deg, #17bebb, #f0a6ca);
+
+      /* here the custom code begins */
+      bottom : 50%;
+      width : 100%;
+      left : 0;
+      top : 0;
+      overflow-x: hidden;
     }
     .GridScoreContainer{
-      height: 50vh;
+      /* height: 50vh; */
+      /* here the custom code begins */
+      top : 50%;
+      width : 100%;
+      left : 0;
+      bottom : 8.2%;
+      overflow-x: hidden;
     }
     .chatInputHandler{
       width: 100%;
+      z-index: 5;
+      overflow-x: hidden;
+    }
+    .totalUsers{
+      position: fixed;
+      top: 51.5%; 
+      left: 0%;
+      background:green;
+      z-index: 7;
+      padding : 2.5px;
+      padding-left: 1.5px;
+      color: white;
+      font-size: 10.5px;
+      border-radius: 0px 5px 5px 0px;
     }
   }
 
+
   @media only screen and (min-width: 960px) {
     .GridChatContainer {
-      height: 100vh;
+      /* height: 100vh; */
+      /* position: relative; */
       background: linear-gradient(120deg, #17bebb, #f0a6ca);
+
+      /* here the custom code begins */
+      bottom : 8.2%;
+      width : 33.33%;
+      left : 0;
+      top : 0;
+      overflow-x: hidden;
     }
     .GridScoreContainer {
-      height: 100vh;
+      /* position: relative; */
+      /* height: 100vh; */
+
+      /* here the custom code begins */
+      bottom : 0%;
+      width : 66.67%;
+      right : 0;
+      top : 0;
+      overflow-x: hidden;
     }
     .chatInputHandler{
-      width: 33%;
+      width: 33.33%;
+      overflow-x: hidden;
+      height: 8.2%;
     }
+
   }

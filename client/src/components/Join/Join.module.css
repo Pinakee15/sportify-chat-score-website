@@ -5,9 +5,9 @@
     margin : 7% auto;
     /* border : 2px solid yellow; */
     padding : 1.8% 2.3%;
-    padding-bottom: 1%;
+    padding-bottom: 0.14%;
     height: 50%;
-    background-color: rgb(245, 245, 245 , 0.45); 
+    background-color: rgb(245, 245, 245 , 0.46); 
     box-shadow: 6px 7px 12px black;
     border-radius: 0px 28px 0px 20px;
     color : #404040;
@@ -28,7 +28,7 @@
     margin-top: 24px;
     margin-bottom: 24px;
     /* color :gray; */
-    background-color:  rgb(0, 0, 0 , 0.01); 
+    /* background-color: rgb(255,165,0,0.6);  */
     width: 60%;
     position: relative;
     left : 20%;
@@ -36,31 +36,31 @@
     padding-bottom : 12px;
     border-bottom: 1px solid orange;
     /* box-shadow: 0px 0px 5px orange; */
-    color : rgb(250, 240, 233) ;
-    /* color : rgb(255,255,242) */
+    /* color : rgb(250, 240, 233) ; */
+    color:#653221;
 }
 
 
 .nameInput{
     display: block;
     margin: 24px auto;
-    width : 35%;
+    width : 37%;
     padding : 2px 0px;
     border : none;
 }
 
-@media only screen and (max-width: 1150px) {
+@media only screen and (max-width: 1190px) {
     .container{
         width : 80%;
-        margin :18% auto;
+        margin :15.7% auto;
     }
     .nameInput{
         display: block;
         margin: 0px auto;
-        width : 54%;
+        width : 60%;
     }
     .buttonInput{
-        width: 25%;
+        width: 28%;
     }
     .subHeading{
         width : 90%;
@@ -68,6 +68,12 @@
     }
     .nameInput{
         margin-top : 19px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .container{
+        margin :28% auto;
     }
 }
 
@@ -81,7 +87,7 @@
 .buttonInput{
     padding : 4px 5px;
     display: inline-block;
-    width : 15%;
+    width : 20%;
     padding : 10px 0px;
     position : relative;
     font-size: 0.75em;
