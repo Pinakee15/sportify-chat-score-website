@@ -44,7 +44,7 @@
 .nameInput{
     display: block;
     margin: 24px auto;
-    width : 37%;
+    width : 40%;
     padding : 2px 0px;
     border : none;
 }
@@ -52,7 +52,7 @@
 @media only screen and (max-width: 1190px) {
     .container{
         width : 80%;
-        margin :15.7% auto;
+        margin :14% auto;
     }
     .nameInput{
         display: block;
@@ -71,9 +71,13 @@
     }
 }
 
+
 @media only screen and (max-width: 600px) {
     .container{
-        margin :28% auto;
+        margin :23% auto;
+    }
+    .nameInput{
+        width: 77%;
     }
 }
 
@@ -87,13 +91,13 @@
 .buttonInput{
     padding : 4px 5px;
     display: inline-block;
-    width : 20%;
+    width : 21%;
     padding : 10px 0px;
     position : relative;
     font-size: 0.75em;
     left : 42.5%;
     margin-top : 15px;
-    margin-bottom: 0px;
+    margin-bottom: 12px;
     border-radius: 5px;
     color : rgb(219, 110, 110);
 }

@@ -1,0 +1,59 @@
+
+.buttonContainer{
+    display: inline-block;
+    width : 20%;
+    /* padding : 10px 0px; */
+    padding: 6px;
+    position : relative;
+    font-size: 0.75em;
+    left : 42%;
+    margin-top : 15px;
+    margin-bottom: 0px;
+    border-radius: 5px;
+    color : rgb(219, 110, 110);
+    margin-bottom: 5px;
+    border: 2px solid black;
+}
+
+.buttonInput{
+    padding : 4px 5px;
+    display: inline-block;
+    width : 21%;
+    padding : 10px 0px;
+    position : relative;
+    font-size: 0.75em;
+    left : 42.5%;
+    margin-top : 15px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+    color : rgb(219, 110, 110);
+}
+
+/* .toastButton{
+    margin: 0px auto;
+    position: relative;
+    left: 29%;
+    font-size: 0.5em;
+} */
+
+@media only screen and (max-width: 1190px) {
+    .buttonContainer{
+        width: 20%;
+    }
+    .toastButton{
+        margin: 0px auto;
+        position: relative;
+        left: 18%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .buttonContainer{
+        width: 28%;
+    }
+    .toastButton{
+        margin: 0px auto;
+        position: relative;
+        left: 0.5%;
+    }
+}
+

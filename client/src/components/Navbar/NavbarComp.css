@@ -1,9 +1,49 @@
 .NavbarBrand{
+    margin-left: 40px ;
+    border: 1px solid orange;
+    padding: 2px 12px;
+    /* margin-top: 11px;  */
+    border-right: 4px solid orange;
+    font-size: 25px;
+}
+
+.NavLink1{
+    font-size: 18px;
+    color: black; 
+    transition-property:  background-color;
+    transition-duration: 0.5s;
+    border-bottom: 2px solid orange;
+    padding : 1px;
+    padding-top: 0px;
+} 
+
+.NavLink2{
+    font-size: 18px;
+    margin-right: 40px ;
+    margin-left: 20px; 
+    color: black; 
+    transition-property:  background-color;
+    transition-duration: 0.5s;
+    border-bottom: 2px solid orange;
+    padding : 1px;
+    padding-top: 0px;
+} 
+
+.NavLink1:hover{
+    background-color: rgb(265,165,0);
+} 
+
+.NavLink2:hover{
+    background-color: rgb(265,165,0,1);
+} 
+
+/* .NavbarBrand{
     margin-left: 60px ;
     border: 1px solid orange;
     padding: 2px 12px;
     margin-top: 11px; 
     border-right: 4px solid orange;
+    font-size: 35px;
 }
 
 .NavLink1{
@@ -30,15 +70,11 @@
 
 .NavLink1:hover{
     background-color: rgb(265,165,0);
-    /* border-bottom: 2px solid orange; */
-    /* font-size: 20px; */
 } 
 
 .NavLink2:hover{
     background-color: rgb(265,165,0,1);
-    /* border-bottom: 2px solid orange; */
-    /* font-size: 20px; */
-} 
+}  */
 
 
 @media only screen and (max-width: 960px) {

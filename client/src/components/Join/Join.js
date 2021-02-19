@@ -4,6 +4,7 @@ import NavbarComp from '../Navbar/NavbarComp';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Rooms from '../Rooms/Rooms';
 import styles from "./Join.module.css";
+import Toast from "../Toast/Toast";
 
 function Join() {
     const initialRooms = [
@@ -20,7 +21,8 @@ function Join() {
         const tempRooms = [...initialRooms]
         tempRooms[index].status = newStatus;
         setRooms(tempRooms);
-        setSelectedRoom(initialRooms[index].room)
+        newStatus ? setSelectedRoom(initialRooms[index].room) : setSelectedRoom(null)
+        // setSelectedRoom(initialRooms[index].room)
     }
     console.log(`This is the warning message ${warningMessage}`)
     const checkInputStatus = () => {
@@ -42,14 +44,15 @@ function Join() {
                 <input className={styles.nameInput} placeholder="Type your user name here" onChange={(event) => setUserName(event.target.value)} ></input>
                 <h6 className={styles.subHeading}><strong>--Enter both name and sports room--</strong></h6>
                 < Rooms rooms={rooms} selectOneRoom={selectOneRoom} />
-                <Link to={{
-                    pathname: "/chat",
-                    userName,
-                    selectedRoom,
-                }} onClick={checkInputStatus} >
-                    <button className={styles.buttonInput} ><strong>SUBMIT</strong></button>
-                </Link>
-                <p>{warningMessage}</p>
+                {userName === '' || userName === null || selectedRoom === null ? (<Toast />)
+                    // (<button className={styles.buttonInput} onClick={showToast}>SUBMIT</button>)
+                    : (<Link to={{
+                        pathname: "/chat",
+                        userName,
+                        selectedRoom,
+                    }} onClick={checkInputStatus} >
+                        <button className={styles.buttonInput} ><strong>SUBMIT</strong></button>
+                    </Link>)}
             </div>
         </>
 

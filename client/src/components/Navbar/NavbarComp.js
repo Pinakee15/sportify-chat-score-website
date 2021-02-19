@@ -7,9 +7,9 @@ import './NavbarComp.css';
 const NavbarComp = () => {
     return (
         <div>
-            <Navbar collapseOnSelect expand="lg" fixed="top" variant="dark">
+            <Navbar collapseOnSelect expand="lg" fixed="top" variant='light' bg="light" >
                 <Link to="/">
-                    <Navbar.Brand className="NavbarBrand" style={{ fontSize: '35px' }} >Sportify</Navbar.Brand>
+                    <Navbar.Brand className="NavbarBrand" style={{ color: 'black' }} >Sportify</Navbar.Brand>
                 </Link>
 
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -19,10 +19,10 @@ const NavbarComp = () => {
                     </Nav>
                     <Nav >
                         <Link to="/about" style={{ textDecoration: 'none' }}>
-                            <div className="NavLink1" style={{ color: 'white', textDecoration: 'none' }}>About Sportify</div>
+                            <div className="NavLink1" style={{ color: 'black', textDecoration: 'none' }}>About Sportify</div>
                         </Link>
                         <Link to="/contact" style={{ textDecoration: 'none' }}>
-                            <div className="NavLink2" style={{ color: 'white' }}>
+                            <div className="NavLink2" style={{ color: 'black' }}>
                                 Contact Me
                             </div>
                         </Link>
